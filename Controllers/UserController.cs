@@ -7,17 +7,17 @@ namespace DotnetAPI.Controllers;
 public class UserController : ControllerBase
 {
 
-    public UserController()
+    public UserController(IConfiguration config)
     {
-        
+        Console.WriteLine(config.GetConnectionString("DefaultConnection"));
     }
 
-    [HttpGet]
+    [HttpGet("GetUsers/{testValue}")]
 
     // public IEnumerable<User> GetUsers()
-    public string[] GetUsers()
+    public string[] GetUsers(string testValue)
     {
-        return new string[] {"user1", "user2"};
+        return new string[] {"user1", "user2", testValue };
 
 
         // return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -29,9 +29,4 @@ public class UserController : ControllerBase
         // .ToArray();
 
     }
-}
-
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
