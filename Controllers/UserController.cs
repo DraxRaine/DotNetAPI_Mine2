@@ -110,4 +110,23 @@ public class UserController : ControllerBase
         throw new Exception("Failed to add user man... This sucks too.");
     }
 
+    [HttpDelete("Delete")]
+
+    public IActionResult DeleteUser(int userId)
+    {
+        string sql = @"
+        delete from TutorialAppSchema.Users where UserId = " + userId.ToString();
+
+        Console.WriteLine(sql);
+
+        if(_dapper.ExecuteSql(sql))
+        {
+            return Ok();
+        }
+        
+        throw new Exception("Failed to Delete user man... This really sucks too.");
+    }
+
+    
+
 }
