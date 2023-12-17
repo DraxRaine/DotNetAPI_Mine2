@@ -1,5 +1,7 @@
 using DotnetAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace DotnetAPI.Data
 {
@@ -22,7 +24,7 @@ namespace DotnetAPI.Data
             if(!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                    .UseSqlServer(_config.GetConnectionString("DefaultConnectionString"),
+                    .UseSqlServer(_config.GetConnectionString("DefaultConnection"),
                         optionsBuilder => optionsBuilder.EnableRetryOnFailure());
             }
         }
